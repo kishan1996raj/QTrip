@@ -26,7 +26,7 @@ public class testCase_03 {
         driver = sbc1.getDriver();
     }
 
-    @Test(description = "Booking and Cancellation flow",enabled = true,priority = 3,groups= {"Search and Filter flow"}, dataProvider =  "data-provider", dataProviderClass = DP.class)
+    @Test(description = "Booking and Cancellation flow",enabled = true,priority = 3,groups= {"Booking and Cancellation Flow"}, dataProvider =  "data-provider", dataProviderClass = DP.class)
     public static void TestCase03(String userName, String passWord, String city, String adventure, String guest, String date, String count) throws InterruptedException{
      SoftAssert sf = new SoftAssert();
  

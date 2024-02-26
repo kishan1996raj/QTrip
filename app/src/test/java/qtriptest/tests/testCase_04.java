@@ -26,7 +26,7 @@ public class testCase_04 {
         driver = sbc1.getDriver();
     }
 
-    @Test(description = "Booking History flow", enabled = true, priority = 4, groups= {"Search and Filter flow"},dataProvider = "data-provider",
+    @Test(description = "Booking History flow", enabled = true, priority = 4, groups= {"Reliability Flow"},dataProvider = "data-provider",
             dataProviderClass = DP.class)
     public static void TestCase04(String username, String password, String dataset1,
             String dataset2, String dataset3) throws InterruptedException {
