@@ -5,7 +5,7 @@
 <groups>
    <run>
     <include name="Login Flow"/>
-<include name="Search and Filter Flow"/>
+<include name="Search and Filter flow"/>
 <include name="Booking and Cancellation Flow"/>
 <include name="Reliability Flow"/>
    </run>
