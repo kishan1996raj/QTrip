@@ -15,17 +15,11 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class testCase_03 {
-    static RemoteWebDriver driver;
+public class testCase_03  extends BaseTest {
+   
     public static int index;
     public static String lastUsername="";
-   
-    @BeforeSuite(alwaysRun = true)
-    public static void driver() throws MalformedURLException{
-        DriverSingleton sbc1 = DriverSingleton.createDriverInsatance();
-        driver = sbc1.getDriver();
-    }
-
+  
     @Test(description = "Booking and Cancellation flow",enabled = true,priority = 3,groups= {"Booking and Cancellation Flow"}, dataProvider =  "data-provider", dataProviderClass = DP.class)
     public static void TestCase03(String userName, String passWord, String city, String adventure, String guest, String date, String count) throws InterruptedException{
      SoftAssert sf = new SoftAssert();
@@ -59,10 +53,7 @@ public class testCase_03 {
      sf.assertAll();
 
     }
-    @AfterSuite()
-    public static void closeBrowser(){
-        driver.quit();
-    }
+   
 }
 
     

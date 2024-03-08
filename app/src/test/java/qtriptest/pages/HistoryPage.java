@@ -1,6 +1,7 @@
 
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.Alert;
@@ -51,8 +52,8 @@ WebElement Logout;
             elementsToCheck.add(guestName);
             elementsToCheck.add(date);
             elementsToCheck.add(count);
-           int count1 = 0; 
-           for(List<String> td:tableData){
+            int count1 = 0; 
+            for(List<String> td:tableData){
            
             boolean found = true;
           
@@ -68,7 +69,8 @@ WebElement Logout;
                 for(String result: td){
                     System.out.print(result+ " | ");
                 }
-                WebElement transaction = driver.findElement(By.xpath("//table/tbody/tr["+count1+"]/th"));
+                By by = By.xpath("//table/tbody/tr["+count1+"]/th");
+                WebElement transaction = SeleniumWrapper.findElement(driver, by, 3);
                 if(transaction.isDisplayed()){
                     System.out.println(" ");
                    System.out.println("transaction id found");
@@ -100,7 +102,8 @@ WebElement Logout;
             
                 count1++;
                 if(found){
-                     WebElement cancel = driver.findElement(By.xpath("//table/tbody/tr["+count1+"]/td[8]"));
+                    By by = By.xpath("//table/tbody/tr["+count1+"]/td[8]");
+                    WebElement cancel = SeleniumWrapper.findElement(driver, by, 3);
                      if(cancel.isDisplayed()){
                         System.out.println("found cancel button");
                         cancel.click();
@@ -117,12 +120,13 @@ WebElement Logout;
     }
 
     public void refreshHistory() throws InterruptedException{
-        driver.get("https://qtripdynamic-qa-frontend.vercel.app/pages/adventures/reservations/");
+        String url = "https://qtripdynamic-qa-frontend.vercel.app/pages/adventures/reservations/";
+        SeleniumWrapper.navigate(url, driver);
         Thread.sleep(2000);
     }
 
     public void logout(){
-       Logout.click();
+        SeleniumWrapper.click(Logout, driver);
     }
 }
 

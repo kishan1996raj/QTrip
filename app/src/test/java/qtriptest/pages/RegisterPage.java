@@ -1,5 +1,6 @@
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import java.util.UUID;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,12 +28,11 @@ public class RegisterPage {
     public boolean navigateToRegisterPage() {
         boolean status = false;
         String Url = "https://qtripdynamic-qa-frontend.vercel.app/pages/register/";
-        if (driver.getCurrentUrl() != Url) {
-            driver.get(Url);
-            status = true;
-        }
+        status = SeleniumWrapper.navigate(Url, driver);
         return status;
-    }
+       }
+        
+    
 
     public boolean userRegistration(String emailaddress, String password, boolean makeUserDynamic)
             throws InterruptedException {
@@ -44,12 +44,11 @@ public class RegisterPage {
         }
         else 
         test_emailaddress = emailaddress;
-        
-        emailAddressTxtBox.sendKeys(test_emailaddress);
-        passwordTxtBox.sendKeys(password);
-        confirmPasswordTxtBox.sendKeys(password);
-
-        registerButton.click();
+        SeleniumWrapper.sendKeys(emailAddressTxtBox, driver, test_emailaddress);
+        SeleniumWrapper.sendKeys(passwordTxtBox, driver, password);
+        SeleniumWrapper.sendKeys(passwordTxtBox, driver, password);
+        SeleniumWrapper.sendKeys(confirmPasswordTxtBox, driver, password);
+        SeleniumWrapper.click(registerButton, driver);
         Thread.sleep(2000);
         if (driver.getCurrentUrl().equals("https://qtripdynamic-qa-frontend.vercel.app/pages/login") ) {
             status = true;

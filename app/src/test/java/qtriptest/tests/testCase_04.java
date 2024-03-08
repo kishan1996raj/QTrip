@@ -15,16 +15,12 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class testCase_04 {
-    static RemoteWebDriver driver;
+public class testCase_04  extends BaseTest {
+    
     public static int index;
     public static String lastUsername = "";
 
-    @BeforeSuite(alwaysRun = true)
-    public static void driver() throws MalformedURLException {
-        DriverSingleton sbc1 = DriverSingleton.createDriverInsatance();
-        driver = sbc1.getDriver();
-    }
+  
 
     @Test(description = "Booking History flow", enabled = true, priority = 4, groups= {"Reliability Flow"},dataProvider = "data-provider",
             dataProviderClass = DP.class)
@@ -100,9 +96,6 @@ public class testCase_04 {
 
     }
 
-    @AfterSuite()
-    public static void closeBrowser() {
-        driver.quit();
-    }
+ 
 
 }

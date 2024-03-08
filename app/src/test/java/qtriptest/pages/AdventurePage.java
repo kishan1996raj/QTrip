@@ -2,6 +2,7 @@
 
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
@@ -41,7 +42,8 @@ public class AdventurePage {
 
 
     public void searchFilter(String i) throws InterruptedException {
-        WebElement filterDropdown = driver.findElement(By.xpath("//select[@id = 'duration-select']"));
+        By by = By.xpath("//select[@id = 'duration-select']");
+        WebElement filterDropdown = SeleniumWrapper.findElement(driver, by, 3);
         Select sc = new Select(filterDropdown);
         sc.selectByVisibleText(i);
         Thread.sleep(3000);
@@ -49,36 +51,39 @@ public class AdventurePage {
     }
 
     public void searchCategory(String i) throws InterruptedException {
-        WebElement categoryDropdown = driver.findElement(By.xpath("//select[@id = 'category-select']"));
+        By by = By.xpath("//select[@id = 'category-select']");
+        WebElement categoryDropdown = SeleniumWrapper.findElement(driver, by, 3);
         Select sc = new Select(categoryDropdown);
         sc.selectByVisibleText(i);
         Thread.sleep(3000);
     }
 
-    public void searchadvetureI(String text) {
-        searchadventure.sendKeys(text);
+    public void searchadvetureI(String text) throws InterruptedException {
+        SeleniumWrapper.sendKeys(searchadventure, driver, text);
+       
     }
 
     public void clearFilter() {
-        clearFilter.click();
+        SeleniumWrapper.click(clearFilter, driver);
     }
 
     public void clearCategory() {
-        clearCategory.click();
+        SeleniumWrapper.click( clearCategory, driver);
     }
 
     public void clearAdventure() {
-        clearAdventure.click();
+        SeleniumWrapper.click( clearAdventure, driver);
     }
 
     public boolean searchAdventure(String text) throws InterruptedException{
-       searchAdventure.sendKeys(text);
-       Thread.sleep(2000);
-       WebElement result = driver.findElement(By.xpath("//h5[normalize-space()='"+text+"']"));
-       Thread.sleep(3000);
+        SeleniumWrapper.sendKeys(searchAdventure, driver, text);
+        Thread.sleep(2000);
+        By by = By.xpath("//h5[normalize-space()='"+text+"']");
+        WebElement result = SeleniumWrapper.findElement(driver,by, 3);
+        Thread.sleep(3000);
        if(result.getText().equalsIgnoreCase(text)){
-            result.click();
-            Thread.sleep(2000);
+           SeleniumWrapper.click(result, driver);
+        Thread.sleep(2000);
            return true;
        }
        return false;
@@ -90,7 +95,7 @@ public class AdventurePage {
             String text1 = adventurePArent
                     .findElement(By.xpath("//a/div/div/div/h5[text()='" + text + "']")).getText();
             if (text1.equalsIgnoreCase(text)) {
-                adventurePArent.click();
+                SeleniumWrapper.click(adventurePArent, driver);
             }
         }
         if (driver.getCurrentUrl().contains("?adventure")){

@@ -1,5 +1,6 @@
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,11 +33,8 @@ public class HomePage {
 
     public boolean navigateToHomePage(){
         boolean status = false;
-        String Url = "https://qtripdynamic-qa-frontend.vercel.app";
-        if (driver.getCurrentUrl() != Url) {
-            driver.get(Url);
-            status = true;
-        }
+        String Url = "https://qtripdynamic-qa-frontend.vercel.app/";
+        status = SeleniumWrapper.navigate(Url, driver);
         return status;
     }
 
@@ -45,7 +43,7 @@ public class HomePage {
         boolean status = false;
         String cityL = city.toLowerCase();
         Thread.sleep(3000);
-        searchBox.sendKeys(cityL);
+        SeleniumWrapper.sendKeys(searchBox, driver, cityL);
         //add wait here
         Thread.sleep(3000);
         String city1 = city.substring(0,1).toUpperCase()+city.substring(1);

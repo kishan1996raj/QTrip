@@ -28,11 +28,13 @@ dependencies {
     // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
     implementation group: 'org.apache.poi', name: 'poi-ooxml', version: '5.2.2'
     
+    // https://mvnrepository.com/artifact/com.relevantcodes/extentreports
+    implementation group: 'com.relevantcodes', name: 'extentreports' , version: '2.40.2'
 }
 
 // Additional config for Crio workspace
 buildDir = '/tmp/external_build'
-/*
+
 task startScript(type:Exec) {
     commandLine '../selenium-run.sh'
 }
@@ -40,11 +42,10 @@ task startScript(type:Exec) {
 run.dependsOn startScript
 
 test.dependsOn startScript
-*/
+
 test {
     useTestNG() {
-        useDefaultListeners = true
-         suites 'src/test/java/qtriptest/testng.xml'
+        useDefaultListeners = true // generates the test report
     }
 
     afterSuite { desc, result ->

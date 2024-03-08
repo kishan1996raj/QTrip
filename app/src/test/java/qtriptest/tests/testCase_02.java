@@ -13,17 +13,11 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-public class testCase_02 {
+public class testCase_02 extends BaseTest {
    
-    static RemoteWebDriver driver;
+   
     public static String lastUsername="";
-   
 
-    @BeforeSuite(alwaysRun = true)
-    public static void driver() throws MalformedURLException{
-        DriverSingleton sbc1 = DriverSingleton.createDriverInsatance();
-        driver = sbc1.getDriver();
-    }
 
     @Test(description = "verifying Home page and Adventure page functionalities", enabled =true,priority = 2 ,groups= {"Search and Filter flow"}
 

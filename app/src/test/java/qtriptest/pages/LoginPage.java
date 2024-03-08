@@ -1,5 +1,6 @@
 package qtriptest.pages;
 
+import qtriptest.SeleniumWrapper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,19 +29,16 @@ public class LoginPage {
     public boolean navigateToLoginPage() {
         boolean status = false;
         String Url = "https://qtripdynamic-qa-frontend.vercel.app/pages/login";
-        if (driver.getCurrentUrl() != Url) {
-            driver.get(Url);
-            status = true;
-        }
+        status =  SeleniumWrapper.navigate(Url, driver);
         return status;
     }
 
     public boolean userLogin(String email, String password) throws InterruptedException {
         boolean status = false;
-        emailTxtBox.sendKeys(email);
-        passwordTxtBox.sendKeys(password);
+        SeleniumWrapper.sendKeys(emailTxtBox, driver, email);
+        SeleniumWrapper.sendKeys(passwordTxtBox, driver, password);
         Thread.sleep(3000);
-        loginButton.click();
+        SeleniumWrapper.click(loginButton, driver);
         if(logoutButton.isDisplayed()) {
             status = true;
         }
@@ -49,7 +47,7 @@ public class LoginPage {
 
     public boolean  userLogout(){
         boolean status = false;
-        logoutButton.click();
+        SeleniumWrapper.click(logoutButton, driver);
         if(driver.getCurrentUrl().equals("https://qtripdynamic-qa-frontend.vercel.app/")){
           status = true;
         }
